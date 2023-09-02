@@ -26,3 +26,11 @@ gcloud container clusters create $GKE_NAME\
 --enable-autoscaling \
 --min-nodes=1 \
 --max-nodes=3
+
+# obter a service account do cloudbuild
+# gcloud projects get-iam-policy [PROJECT-ID] | grep "cloudbuild.gserviceaccount.com"
+
+# privilégio da service account do cloudbuild para administrar o container
+gcloud projects add-iam-policy-binding [PROJECT-ID] \
+--member='serviceAccount:[PROJECT_NUMBER]@cloudbuild.gserviceaccount.com' \
+--role='roles/container.admin'
