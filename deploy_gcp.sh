@@ -34,3 +34,12 @@ gcloud container clusters create $GKE_NAME\
 gcloud projects add-iam-policy-binding [PROJECT-ID] \
 --member='serviceAccount:[PROJECT_NUMBER]@cloudbuild.gserviceaccount.com' \
 --role='roles/container.admin'
+
+# criar trigger
+gcloud beta builds triggers create github \
+--name=maxim-build-trigger \
+--description="Push to branch" \
+--repo-name=maxim-cicd \
+--repo-owner=maximbetin \
+--branch-pattern="^main$" \
+--build-config=cloudbuild.yaml
